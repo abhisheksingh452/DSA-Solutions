@@ -4,21 +4,32 @@ public:
 
         int n = nums.size();
 
-        int i = n - 2;
-
-        while (i >= 0 && nums[i] >= nums[i + 1])
-            i--;
-
-        if (i >= 0) {
-
-            int j = n - 1;
-
-            while (nums[j] <= nums[i])
-                j--;
-
-            swap(nums[i], nums[j]);
+        int piv = -1;
+        for(int i = n-2;i>=0;i--){
+            if(nums[i]<nums[i+1]){
+                piv= i;
+                break;
+            }
+        }
+        if(piv == -1){
+            reverse(nums.begin(),nums.end());
+            return;
+        }
+        for(int i=n-1;i>piv;i--){
+            if(nums[i]>nums[piv]){
+                swap(nums[i],nums[piv]);
+                break;
+            }
         }
 
-        sort(nums.begin() + i + 1, nums.end());
+        reverse(nums.begin()+piv+1, nums.end());
+        // int i=piv+1;
+        // int j = n-1;
+        // while(i<=j){
+        //     swap(nums[i],nums[j]);
+        //     i++;
+        //     j--;
+        // }
+
     }
 };
