@@ -2,21 +2,37 @@ class Solution {
 public:
     int numOfSubarrays(vector<int>& arr, int k, int threshold) {
 
-        int windowsum =0;
-        int count = 0;
+        // int windowsum =0;
+        // int count = 0;
 
+        // for(int i=0;i<k;i++){
+        //     windowsum+=arr[i];
+        // }
+
+        // if(windowsum>=k*threshold){
+        //     count++;
+        // }
+
+        // for(int i =k;i<arr.size();i++){
+        //     windowsum= windowsum-arr[i-k]+arr[i];
+
+        //     if(windowsum>=k*threshold){
+        //         count++;
+        //     }
+        // }
+        // return count;
+        int sum=0;
+        int count=0;
         for(int i=0;i<k;i++){
-            windowsum+=arr[i];
+            sum+=arr[i];
         }
-
-        if(windowsum>=k*threshold){
+        if(sum>=k*threshold){
             count++;
         }
+        for(int i=k;i<arr.size();i++){
+            sum=sum-arr[i-k]+arr[i];
 
-        for(int i =k;i<arr.size();i++){
-            windowsum= windowsum-arr[i-k]+arr[i];
-
-            if(windowsum>=k*threshold){
+            if(sum>=k*threshold){
                 count++;
             }
         }
